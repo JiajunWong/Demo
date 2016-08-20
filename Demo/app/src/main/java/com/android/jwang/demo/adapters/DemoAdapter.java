@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.jwang.demo.R;
 import com.android.jwang.demo.activities.DetailsActivity;
@@ -46,6 +47,15 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
     {
+        int type = getItemViewType(position);
+        if (type == TYPE_SHORT)
+        {
+            holder.mTitleTextView.setText(mContext.getString(R.string.card_title1));
+        }
+        else
+        {
+            holder.mTitleTextView.setText(mContext.getString(R.string.card_title2));
+        }
     }
 
     @Override
@@ -64,10 +74,12 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>
             implements View.OnClickListener
     {
         private View mRootView;
+        private TextView mTitleTextView;
 
         public ViewHolder(View itemView)
         {
             super(itemView);
+            mTitleTextView = (TextView) itemView.findViewById(R.id.title);
             mRootView = itemView.findViewById(R.id.root_view);
             mRootView.setOnClickListener(this);
         }

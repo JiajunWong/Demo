@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">Demo</string>
 
+    <!-- actions -->
+    <string name="action_yes">YES</string>
+    <string name="action_no">NO</string>
+    <string name="action_1">ACTION 1</string>
+    <string name="action_2">ACTION 2</string>
+
     <!-- list item -->
     <string name="card_title">Card Title</string>
+    <string name="card_title1">Card Title 1</string>
+    <string name="card_title2">Card Title 2</string>
     <string name="card_description">Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Emmit Lorem Ipsum</string>
     <string name="action_name">Lorem Ipsum Dolor</string>
     <string name="is_this_right">Is this right?</string>
-    <string name="action_yes">YES</string>
-    <string name="action_no">NO</string>
 
     <!-- transition -->
     <string name="transition_morph_view" translatable="false">morph_view_transition</string>

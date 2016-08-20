@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card Title"
+        android:text="@string/card_title"
         android:textColor="#323c46"
         android:textSize="20dp" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Emmit Lorem Ipsum"
+        android:text="@string/card_description"
         android:textColor="#323c46"
         android:textSize="16sp" />
 
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Emmit Lorem Ipsum"
+        android:text="@string/card_description"
         android:textColor="#323c46"
         android:textSize="16sp" />
 
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Emmit Lorem Ipsum"
+        android:text="@string/card_description"
         android:textColor="#323c46"
         android:textSize="16sp" />
 
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Emmit Lorem Ipsum"
+        android:text="@string/card_description"
         android:textColor="#323c46"
         android:textSize="16sp" />
 </LinearLayout>
