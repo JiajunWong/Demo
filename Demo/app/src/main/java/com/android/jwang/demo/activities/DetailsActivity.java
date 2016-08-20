@@ -47,7 +47,7 @@ public class DetailsActivity extends BaseActivity
     private void setupSharedElementTransitionsButton(@NonNull Activity activity, @Nullable View target)
     {
         ArcMotion arcMotion = new ArcMotion();
-        int color = ContextCompat.getColor(activity, R.color.color_blue);
+        int color = ContextCompat.getColor(activity, R.color.line_grey);
         Interpolator easeInOut = AnimationUtils.loadInterpolator(activity, android.R.interpolator.fast_out_slow_in);
         MorphButtonToDialog sharedEnter = new MorphButtonToDialog(color);
         sharedEnter.setPathMotion(arcMotion);
