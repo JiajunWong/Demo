@@ -6,6 +6,7 @@
 
     <color name="color_blue">#5C6BC0</color>
     <color name="super_light_grey">#FAFAFA</color>
+    <color name="line_grey">#D9D9D9</color>
 
     <!-- Transparency -->
     <color name="transparency_100">#FF000000</color>
