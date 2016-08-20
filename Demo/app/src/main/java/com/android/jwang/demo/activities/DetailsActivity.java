@@ -24,8 +24,6 @@ import android.view.animation.Interpolator;
 public class DetailsActivity extends BaseActivity
         implements View.OnClickListener
 {
-    private View mRootView;
-    private View mContainer;
 
     public static void startActivity(Context context, View view)
     {
@@ -39,11 +37,11 @@ public class DetailsActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        mRootView = findViewById(R.id.root_view);
-        mRootView.setOnClickListener(this);
-        mContainer = findViewById(R.id.container);
 
-        setupSharedElementTransitionsButton(this, mContainer);
+        View container = findViewById(R.id.container);
+        findViewById(R.id.action_dismiss).setOnClickListener(this);
+
+        setupSharedElementTransitionsButton(this, container);
     }
 
     private void setupSharedElementTransitionsButton(@NonNull Activity activity, @Nullable View target)
@@ -71,7 +69,7 @@ public class DetailsActivity extends BaseActivity
     {
         switch (v.getId())
         {
-            case R.id.root_view:
+            case R.id.action_dismiss:
                 dismiss();
         }
     }
