@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Demo</string>
+
+    <string name="card_title">Card Title</string>
+    <string name="card_description">Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Dolor Emmit Lorem Ipsum Emmit Lorem Ipsum</string>
+
+    <!-- transition -->
+    <string name="transition_morph_view" translatable="false">morph_view_transition</string>
+</resources>
