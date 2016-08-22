@@ -35,61 +35,67 @@ import com.android.jwang.demo.R;
 /**
  * A transition that morphs a button into a rectangle, changing it's background color.
  */
-public class MorphButtonToDialog extends ChangeBounds {
+public class MorphButtonToDialog extends ChangeBounds
+{
 
     private static final String PROPERTY_COLOR = "property_color";
-    private static final String[] TRANSITION_PROPERTIES = {
-            PROPERTY_COLOR
-    };
-    private @ColorInt
-    int startColor = Color.TRANSPARENT;
+    private static final String[] TRANSITION_PROPERTIES = { PROPERTY_COLOR };
+    private @ColorInt int startColor = Color.TRANSPARENT;
 
-    public MorphButtonToDialog(@ColorInt int startColor) {
+    public MorphButtonToDialog(@ColorInt int startColor)
+    {
         super();
         setStartColor(startColor);
     }
 
-    public MorphButtonToDialog(Context context, AttributeSet attrs) {
+    public MorphButtonToDialog(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
     }
 
-    public void setStartColor(@ColorInt int startColor) {
+    public void setStartColor(@ColorInt int startColor)
+    {
         this.startColor = startColor;
     }
 
     @Override
-    public String[] getTransitionProperties() {
+    public String[] getTransitionProperties()
+    {
         return TRANSITION_PROPERTIES;
     }
 
     @Override
-    public void captureStartValues(TransitionValues transitionValues) {
+    public void captureStartValues(TransitionValues transitionValues)
+    {
         super.captureStartValues(transitionValues);
         final View view = transitionValues.view;
-        if (view.getWidth() <= 0 || view.getHeight() <= 0) return;
+        if (view.getWidth() <= 0 || view.getHeight() <= 0)
+            return;
         transitionValues.values.put(PROPERTY_COLOR, startColor);
     }
 
     @Override
-    public void captureEndValues(TransitionValues transitionValues) {
+    public void captureEndValues(TransitionValues transitionValues)
+    {
         super.captureEndValues(transitionValues);
         final View view = transitionValues.view;
-        if (view.getWidth() <= 0 || view.getHeight() <= 0) return;
-        transitionValues.values.put(PROPERTY_COLOR,
-                ContextCompat.getColor(view.getContext(), R.color.super_light_grey));
+        if (view.getWidth() <= 0 || view.getHeight() <= 0)
+            return;
+        transitionValues.values.put(PROPERTY_COLOR, ContextCompat.getColor(view.getContext(), R.color.super_light_grey));
     }
 
     @Override
-    public Animator createAnimator(final ViewGroup sceneRoot,
-                                   TransitionValues startValues,
-                                   final TransitionValues endValues) {
+    public Animator createAnimator(final ViewGroup sceneRoot, TransitionValues startValues, final TransitionValues endValues)
+    {
         Animator changeBounds = super.createAnimator(sceneRoot, startValues, endValues);
-        if (startValues == null || endValues == null || changeBounds == null) return null;
+        if (startValues == null || endValues == null || changeBounds == null)
+            return null;
 
         Integer startColor = (Integer) startValues.values.get(PROPERTY_COLOR);
         Integer endColor = (Integer) endValues.values.get(PROPERTY_COLOR);
 
-        if (startColor == null || endColor == null) return null;
+        if (startColor == null || endColor == null)
+            return null;
 
         MorphDrawable background = new MorphDrawable(startColor, 0);
         endValues.view.setBackground(background);
@@ -97,20 +103,16 @@ public class MorphButtonToDialog extends ChangeBounds {
         Animator color = ObjectAnimator.ofArgb(background, background.COLOR, endColor);
 
         // ease in the dialog's child views (slide up & fade_fast in)
-        if (endValues.view instanceof ViewGroup) {
+        if (endValues.view instanceof ViewGroup)
+        {
             ViewGroup vg = (ViewGroup) endValues.view;
             float offset = vg.getHeight() / 3;
-            for (int i = 0; i < vg.getChildCount(); i++) {
+            for (int i = 0; i < vg.getChildCount(); i++)
+            {
                 View v = vg.getChildAt(i);
                 v.setTranslationY(offset);
                 v.setAlpha(0f);
-                v.animate()
-                        .alpha(1f)
-                        .translationY(0f)
-                        .setDuration(150)
-                        .setStartDelay(150)
-                        .setInterpolator(AnimationUtils.loadInterpolator(vg.getContext(),
-                                android.R.interpolator.fast_out_slow_in));
+                v.animate().alpha(1f).translationY(0f).setDuration(150).setStartDelay(150).setInterpolator(AnimationUtils.loadInterpolator(vg.getContext(), android.R.interpolator.fast_out_slow_in));
                 offset *= 1.8f;
             }
         }
@@ -118,8 +120,7 @@ public class MorphButtonToDialog extends ChangeBounds {
         AnimatorSet transition = new AnimatorSet();
         transition.playTogether(changeBounds, color);
         transition.setDuration(300);
-        transition.setInterpolator(AnimationUtils.loadInterpolator(sceneRoot.getContext(),
-                android.R.interpolator.fast_out_slow_in));
+        transition.setInterpolator(AnimationUtils.loadInterpolator(sceneRoot.getContext(), android.R.interpolator.fast_out_slow_in));
         return transition;
     }
 

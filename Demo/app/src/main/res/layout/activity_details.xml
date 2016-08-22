@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/card_title"
         android:textColor="#323c46"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="match_parent"

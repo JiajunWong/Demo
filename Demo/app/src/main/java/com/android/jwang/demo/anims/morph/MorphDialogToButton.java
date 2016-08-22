@@ -16,72 +16,93 @@ import android.view.animation.AnimationUtils;
 
 import com.android.jwang.demo.R;
 
+/*
+ * Copyright 2015 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /**
  * A transition that morphs a rectangle into a circle, changing it's background color.
  */
-public class MorphDialogToButton extends ChangeBounds {
+public class MorphDialogToButton extends ChangeBounds
+{
 
     private static final String PROPERTY_COLOR = "plaid:rectMorph:color";
     private static final String PROPERTY_CORNER_RADIUS = "plaid:rectMorph:cornerRadius";
-    private static final String[] TRANSITION_PROPERTIES = {
-            PROPERTY_COLOR,
-            PROPERTY_CORNER_RADIUS
-    };
-    private @ColorInt
-    int endColor = Color.TRANSPARENT;
+    private static final String[] TRANSITION_PROPERTIES = { PROPERTY_COLOR, PROPERTY_CORNER_RADIUS };
+    private @ColorInt int endColor = Color.TRANSPARENT;
 
-    public MorphDialogToButton(@ColorInt int endColor) {
+    public MorphDialogToButton(@ColorInt int endColor)
+    {
         super();
         setEndColor(endColor);
     }
 
-    public MorphDialogToButton(Context context, AttributeSet attrs) {
+    public MorphDialogToButton(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
     }
 
-    public void setEndColor(@ColorInt int endColor) {
+    public void setEndColor(@ColorInt int endColor)
+    {
         this.endColor = endColor;
     }
 
     @Override
-    public String[] getTransitionProperties() {
+    public String[] getTransitionProperties()
+    {
         return TRANSITION_PROPERTIES;
     }
 
     @Override
-    public void captureStartValues(TransitionValues transitionValues) {
+    public void captureStartValues(TransitionValues transitionValues)
+    {
         super.captureStartValues(transitionValues);
         final View view = transitionValues.view;
-        if (view.getWidth() <= 0 || view.getHeight() <= 0) {
+        if (view.getWidth() <= 0 || view.getHeight() <= 0)
+        {
             return;
         }
-        transitionValues.values.put(PROPERTY_COLOR,
-                ContextCompat.getColor(view.getContext(), R.color.super_light_grey));
+        transitionValues.values.put(PROPERTY_COLOR, ContextCompat.getColor(view.getContext(), R.color.super_light_grey));
     }
 
     @Override
-    public void captureEndValues(TransitionValues transitionValues) {
+    public void captureEndValues(TransitionValues transitionValues)
+    {
         super.captureEndValues(transitionValues);
         final View view = transitionValues.view;
-        if (view.getWidth() <= 0 || view.getHeight() <= 0) {
+        if (view.getWidth() <= 0 || view.getHeight() <= 0)
+        {
             return;
         }
         transitionValues.values.put(PROPERTY_COLOR, endColor);
     }
 
     @Override
-    public Animator createAnimator(final ViewGroup sceneRoot,
-                                   TransitionValues startValues,
-                                   TransitionValues endValues) {
+    public Animator createAnimator(final ViewGroup sceneRoot, TransitionValues startValues, TransitionValues endValues)
+    {
         Animator changeBounds = super.createAnimator(sceneRoot, startValues, endValues);
-        if (startValues == null || endValues == null || changeBounds == null) {
+        if (startValues == null || endValues == null || changeBounds == null)
+        {
             return null;
         }
 
         Integer startColor = (Integer) startValues.values.get(PROPERTY_COLOR);
         Integer endColor = (Integer) endValues.values.get(PROPERTY_COLOR);
 
-        if (startColor == null || endColor == null) {
+        if (startColor == null || endColor == null)
+        {
             return null;
         }
 
@@ -91,18 +112,13 @@ public class MorphDialogToButton extends ChangeBounds {
         Animator color = ObjectAnimator.ofArgb(background, background.COLOR, endColor);
 
         // hide child views (offset down & fade_fast out)
-        if (endValues.view instanceof ViewGroup) {
+        if (endValues.view instanceof ViewGroup)
+        {
             ViewGroup vg = (ViewGroup) endValues.view;
-            for (int i = 0; i < vg.getChildCount(); i++) {
+            for (int i = 0; i < vg.getChildCount(); i++)
+            {
                 View v = vg.getChildAt(i);
-                v.animate()
-                        .alpha(0f)
-                        .translationY(v.getHeight() / 3)
-                        .setStartDelay(0L)
-                        .setDuration(50L)
-                        .setInterpolator(AnimationUtils.loadInterpolator(vg.getContext(),
-                                android.R.interpolator.fast_out_linear_in))
-                        .start();
+                v.animate().alpha(0f).translationY(v.getHeight() / 3).setStartDelay(0L).setDuration(50L).setInterpolator(AnimationUtils.loadInterpolator(vg.getContext(), android.R.interpolator.fast_out_linear_in)).start();
             }
         }
 
